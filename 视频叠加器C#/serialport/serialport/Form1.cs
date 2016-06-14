@@ -1794,30 +1794,28 @@ namespace serialport
            
         }
 
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            DoWork();
-
-        }
-
-
-
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
             if (checkbox_L_ALL.Checked)
             {
                 flag = true;
-                DoWork();
-                timer2.Enabled = true;
-              
+                while (true)
+                {
+                    if (flag == true)
+                    {
+                        DoWork();
+                    }
+                    else 
+                    {
+                        break;
+                    }
+                }
+         
             }
             else
             {
                 flag = false;
-                timer2.Enabled = false;
   
             }
         }
@@ -1827,10 +1825,7 @@ namespace serialport
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             interval = Int32.Parse(comboBox2.SelectedItem.ToString());
-            timer2.Interval = 17 * interval;            //按钮一共17个。
-
         }
 
         private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
@@ -1838,20 +1833,27 @@ namespace serialport
             if (Check_R_ALL.Checked)
             {
                 flag2 = true;
-                Dowork2();
-                timer3.Enabled = true;
+                while (true)
+                {
+                    if (flag2 == true)
+                    {
+                        Dowork2();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
             else
             {
                 flag2 = false;
-                timer3.Enabled = false;
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             interval2 = Int32.Parse(comboBox1.SelectedItem.ToString());
-            timer3.Interval = 17 * interval2;            //按钮一共17个。
         }
 
 
@@ -1866,7 +1868,6 @@ namespace serialport
             {
                 return;
             }
-
 
             if (flag2 == true)
             {
@@ -2023,12 +2024,6 @@ namespace serialport
                     return;
                 }
             }
-        }
-
-
-        private void timer3_Tick(object sender, EventArgs e)
-        {
-            Dowork2();
         }
 
 
